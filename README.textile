@@ -1,0 +1,14 @@
+h1. Lista Cap serve per avere la lista dei Cap Ialiani
+
+Le classi Java presenti nel progetto consentono di ottenere la lista dei cap e dei comuni italiani.
+La lista ufficiale dei CAP italiani è gestita da Poste Italiane che lamette a disposione tramite un software pagamento (che pare funzioni solo su windows).
+Questo programma ottiene una lista non ufficiale dei cap partendo dal sito "comuni italiani":http://www.comuni-italiani.it
+All'interno del progetto c'è una classe che scarica lo zip con tutti comuni e per i comuni che hanno più cap viene fatto il parsing delle pagine di dettaglio per ottenere la lista esatta.
+I formati di output gestiti sono due al momento:
+* JSON
+* Script SQL (sintassi postgreSQL)
+
+Il codice è studiato per ottenere altri formati abbstanza facilmente e velocemente
+Il repository github ospita il progetto eclipse il pom maven e una estrazione dei dati nei formati supportati sotto la directory data
+ 
+ 
