@@ -21,7 +21,7 @@ public class CreateSQLFromJson {
 	 */
 	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException, TemplateException {
 		SQLScriptGenerator scriptGen= new SQLScriptGenerator();
-		scriptGen.generateScript(JsonUtilties.deserializeFrom(new File("data/comuni.json")),
+		scriptGen.generateContent(JsonUtilties.deserializeFrom(new File("data/comuni.json")),
 				new File("data/comuni_cap.sql"), new File("data/cap.sql"));
 	}
 

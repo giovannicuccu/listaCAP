@@ -11,14 +11,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
 public class SQLScriptGenerator {
 	private static Logger logger = LoggerFactory.getLogger(SQLScriptGenerator.class);
@@ -28,7 +24,7 @@ public class SQLScriptGenerator {
 	private final String SQL_CHARSET="UTF-8";
 	private Configuration freeMarkerConfig = new Configuration();
 	private Template comuniTemplate;
-	Template capTemplate;
+	private Template capTemplate;
 	
 	public SQLScriptGenerator() {
 	
@@ -45,7 +41,7 @@ public class SQLScriptGenerator {
 		
 	}
 	
-	public void generateScript(Collection<Comune> comuni,File fileComuni, File fileCap) throws JsonParseException, JsonMappingException, IOException, TemplateException {
+	public void generateContent(Collection<Comune> comuni,File fileComuni, File fileCap) {
 
 		
 		Map<String,Object> templateMap=new HashMap<>();
@@ -57,6 +53,8 @@ public class SQLScriptGenerator {
 			OutputStreamWriter comuniWriter= new OutputStreamWriter(outStream, SQL_CHARSET); 
 		) {
 			comuniTemplate.process(templateMap, comuniWriter);
+		} catch(Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
 		}
 		
 		try ( 
@@ -64,6 +62,8 @@ public class SQLScriptGenerator {
 			OutputStreamWriter capWriter= new OutputStreamWriter(outStream, SQL_CHARSET); 
 		) {
 			capTemplate.process(templateMap, capWriter);
+		} catch(Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
 		}
 		
 	}

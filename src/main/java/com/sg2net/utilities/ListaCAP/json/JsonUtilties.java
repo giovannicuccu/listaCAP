@@ -16,14 +16,15 @@ import com.sg2net.utilities.ListaCAP.Comune;
 
 public class JsonUtilties {
 	private static Logger logger = LoggerFactory.getLogger(JsonUtilties.class);
-	private static ObjectMapper JSONMapper;
+	private static ObjectMapper JSONMapper= new ObjectMapper();
+	static {
+	    SimpleModule module =  new SimpleModule("ComuneDeserializerModule",  
+		    	new Version(1, 0, 0, "Comune","comune","comune"));  
+		    module.addDeserializer(Comune.class, new ComuneDeserializer()); 	
+		    JSONMapper.registerModule(module);		
+	}
 	
 	private JsonUtilties() {
-		JSONMapper = new ObjectMapper(); 
-	    SimpleModule module =  new SimpleModule("ComuneDeserializerModule",  
-	    	new Version(1, 0, 0, "Comune","comune","comune"));  
-	    module.addDeserializer(Comune.class, new ComuneDeserializer()); 	
-	    JSONMapper.registerModule(module);
 	}
 	
 	public static void serializeTo(Collection<Comune> comuni, File file) {
