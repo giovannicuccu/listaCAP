@@ -7,6 +7,7 @@ All'interno del progetto c'è una classe che scarica lo zip con tutti comuni e p
 I formati di output gestiti sono due al momento:
 * JSON
 * Script SQL (sintassi postgreSQL)
+* Excel
 
 Il codice è studiato per ottenere altri formati abbstanza facilmente e velocemente
 Il repository github ospita il progetto eclipse il pom maven e una estrazione dei dati nei formati supportati sotto la directory data
